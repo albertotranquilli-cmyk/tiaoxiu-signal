@@ -12,6 +12,8 @@ cd src
 ../.venv/bin/python analyze.py             # main estimates, placebo, holdout  -> results/results.json
 ../.venv/bin/python robustness.py          # red-team grid                     -> results/robustness.json
 ../.venv/bin/python extra_checks.py        # split-half holdout etc.           -> results/extra_checks.json
+../.venv/bin/python mechanism.py           # hour-of-day profile + UTC day boundary -> results/mechanism.json
+../.venv/bin/python capture_diagnostics.py # GH Archive capture by era/type      -> results/capture.json
 ../.venv/bin/python publish_tables.py      # org tables (large orgs only)      -> results/orgs_*_public.csv
 ../.venv/bin/python figures.py             # figures/*.png
 ../.venv/bin/python summarize.py           # results/SUMMARY.md (the numbers quoted in README)

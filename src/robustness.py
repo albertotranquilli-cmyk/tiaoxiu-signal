@@ -71,6 +71,32 @@ def main():
         mm = el.copy(); mm[order[:drop]] = False
         conc[f"drop_top_{drop}"] = round(pooled(n[mm], d[mm]), 4)
     R["zh_lt_1pct_concentration"] = conc
+    # 6b. near-date placebos (red-team): ordinary same-weekday days 7-21 days from each make-up day
+    #     (same season, same holiday neighbourhood), and the ordinary partner day of the same weekend.
+    from core import BLOCKED, OFF, WORK
+    cols = set(M.columns)
+    def nearest(m, sign):
+        for k in (7, 14, 21):
+            p = m + sign * dt.timedelta(days=k)
+            if p in cols and p not in BLOCKED:
+                return p
+    near = sorted({p for m in used for p in (nearest(m, -1), nearest(m, 1)) if p})
+    partner = [m + dt.timedelta(days=(-1 if m.weekday() == 6 else 1)) for m in used]
+    partner = [p for p in partner if p in cols and p not in OFF and p not in WORK]
+    R["near_date_placebo"] = groups_for(M, r, events=near); R["near_date_placebo"]["days"] = [str(x) for x in near]
+    R["partner_day_placebo"] = groups_for(M, r, events=partner); R["partner_day_placebo"]["days"] = [str(x) for x in partner]
+    # partner-day difference-in-differences on ONE common repo set (the main eligible set):
+    # make-up days of those weekends minus their ordinary partner days
+    pairs = [(m, m + dt.timedelta(days=(-1 if m.weekday() == 6 else 1))) for m in used]
+    pairs = [(m, p) for m, p in pairs if p in cols and p not in OFF and p not in WORK]
+    n0, d0, _ = est(M, MAKEUP); el0 = (d0 >= 10) & (r.titles.values >= 30)
+    n1, d1, _ = est(M, [m for m, p in pairs]); n2, d2, _ = est(M, [p for m, p in pairs])
+    did = {"pairs": [[str(m), str(p)] for m, p in pairs]}
+    for k, msk in {"zh<1%": r.zh.values < 0.01, "zh>=1%": r.zh.values >= 0.01, "zh=0": r.zh.values == 0}.items():
+        mm = el0 & msk
+        a_, b_ = pooled(n1[mm], d1[mm]), pooled(n2[mm], d2[mm])
+        did[k] = {"repos": int(mm.sum()), "makeup_days_of_these_weekends": round(a_, 4), "partner_days": round(b_, 4), "DiD": round(a_ - b_, 4)}
+    R["partner_day_DiD_common_set"] = did
     # 7. same-time-zone negative controls (lower-threshold panel; mostly-Japanese/Korean/Traditional/Simplified titles)
     C = panel("E1", fname="controls_E1_daily.csv.gz")
     cr = pd.read_csv(os.path.join(DER, "controls_E1_repos.csv")).set_index("repo_name").reindex(C.index)

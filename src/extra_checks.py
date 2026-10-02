@@ -4,7 +4,7 @@ import numpy as np, pandas as pd
 from scipy.stats import spearmanr, norm, false_discovery_control
 from core import panel, load_repos, event_terms, share, MAKEUP, DER, ROOT, dt
 from placebo import placebo_matrix
-from analyze import pooled, boot_ci, RES
+from analyze import pooled, boot_ci, boot_ci_2way, RES
 
 X = {}
 
@@ -13,28 +13,29 @@ def per_repo(M, events, K=300, seed=11):
     A, W, E, used = event_terms(M, events, "makeup"); n, d = share(A, W, E, "makeup")
     PN, PD = placebo_matrix(M, used, "makeup", K=K, seed=seed)
     s = n / np.where(d > 0, d, np.nan); sp = PN / np.where(PD > 0, PD, np.nan)
-    z = (s - np.nanmean(sp, 1)) / np.nanstd(sp, 1)
-    return n, d, s, z, W.mean(1), E.mean(1)
+    p_emp = (1 + (sp >= s[:, None]).sum(1)) / (1 + sp.shape[1])  # empirical one-sided placebo p
+    return n, d, s, p_emp, A - E, W - E
 
 
 def main():
     M = panel("E1"); r = load_repos("E1").reindex(M.index)
     ev23 = [m for m in MAKEUP if m.year == 2023]; ev24 = [m for m in MAKEUP if m.year == 2024 and m in set(M.columns)]
-    n1, d1, s1, z1, W1, E1 = per_repo(M, ev23)
-    n2, d2, s2, z2, W2, E2 = per_repo(M, ev24)
+    n1, d1, s1, p1, _, _ = per_repo(M, ev23)
+    n2, d2, s2, _, NE2, DE2 = per_repo(M, ev24)
     el = (d1 >= 10) & (d2 >= 5) & (r.titles.values >= 30)
-    p1 = norm.sf(np.nan_to_num(z1[el], nan=-99)); q1 = false_discovery_control(p1)
+    q1 = false_discovery_control(p1[el])
     flag = np.zeros(len(M), bool); flag[np.where(el)[0][(q1 < 0.05) & (s1[el] > 0.3)]] = True
     hid = flag & (r.zh.values < 0.01)
     X["split_half_2023_to_2024"] = {
         "events_2023": [str(x) for x in ev23], "events_2024": [str(x) for x in ev24],
         "repos": int(el.sum()), "spearman_s2023_vs_s2024": float(spearmanr(s1[el], s2[el]).statistic),
-        "flagged_2023": int(flag.sum()), "flagged_2023_s_in_2024": pooled(n2[flag], d2[flag]), "ci95": boot_ci(n2[flag], d2[flag]),
-        "flagged_2023_zh_lt_1pct": int(hid.sum()), "hidden_s_in_2024": pooled(n2[hid], d2[hid]), "hidden_ci95": boot_ci(n2[hid], d2[hid]),
-        "not_flagged_s_in_2024": pooled(n2[el & ~flag], d2[el & ~flag]), "not_flagged_ci95": boot_ci(n2[el & ~flag], d2[el & ~flag]),
+        "flag_rule": "BH q<0.05 on empirical placebo p (K=300) using 2023 days, and s>0.3",
+        "flagged_2023": int(flag.sum()), "flagged_2023_s_in_2024": pooled(n2[flag], d2[flag]), "ci95": boot_ci_2way(NE2[flag], DE2[flag]),
+        "flagged_2023_zh_lt_1pct": int(hid.sum()), "hidden_s_in_2024": pooled(n2[hid], d2[hid]), "hidden_ci95": boot_ci_2way(NE2[hid], DE2[hid]),
+        "not_flagged_s_in_2024": pooled(n2[el & ~flag], d2[el & ~flag]), "not_flagged_ci95": boot_ci_2way(NE2[el & ~flag], DE2[el & ~flag]),
     }
     # weekend/weekday ratio by script group (tests the equal-weekend-ratio assumption)
-    n, d, s, z, W, E = per_repo(M, MAKEUP, K=50)
+    A_, W, E, _u = event_terms(M, MAKEUP, "makeup"); n, d = share(A_, W, E, "makeup"); W, E = W.mean(1), E.mean(1)
     el = (d >= 10) & (r.titles.values >= 30)
     X["weekend_over_weekday_ratio"] = {k: float(np.median((E / W)[el & m])) for k, m in {
         "zh<1%": r.zh.values < 0.01, "zh>=20%": r.zh.values >= 0.2}.items()}

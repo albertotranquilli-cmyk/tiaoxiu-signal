@@ -1,0 +1,310 @@
+{
+ "E1": {
+  "weekday_events_per_day_by_type": {
+   "IssueCommentEvent": 123635.0,
+   "IssuesEvent": 79770.0,
+   "PullRequestEvent": 222500.0,
+   "PullRequestReviewCommentEvent": 65074.0,
+   "PullRequestReviewEvent": 109336.0,
+   "PushEvent": 2082601.0
+  },
+  "weekend_over_weekday_by_type": {
+   "IssueCommentEvent": 0.516,
+   "IssuesEvent": 0.656,
+   "PullRequestEvent": 0.593,
+   "PullRequestReviewCommentEvent": 0.302,
+   "PullRequestReviewEvent": 0.294,
+   "PushEvent": 0.844
+  },
+  "weekend_over_weekday_all": 0.7666301165609656,
+  "hour_of_week_cv": 0.1861469888035393,
+  "hour_of_week_max_over_min": 2.0498203445925434,
+  "pr_opened_empty_title_share": 0.0
+ },
+ "E2": {
+  "weekday_events_per_day_by_type": {
+   "IssueCommentEvent": 34034.0,
+   "IssuesEvent": 61003.0,
+   "PullRequestEvent": 95113.0,
+   "PullRequestReviewCommentEvent": 29043.0,
+   "PullRequestReviewEvent": 32123.0,
+   "PushEvent": 2044341.0
+  },
+  "weekend_over_weekday_by_type": {
+   "IssueCommentEvent": 1.025,
+   "IssuesEvent": 1.358,
+   "PullRequestEvent": 1.21,
+   "PullRequestReviewCommentEvent": 0.84,
+   "PullRequestReviewEvent": 0.679,
+   "PushEvent": 1.002
+  },
+  "weekend_over_weekday_all": 1.0133807174130516,
+  "hour_of_week_cv": 0.05320389488442643,
+  "hour_of_week_max_over_min": 1.3301379893898901,
+  "pr_opened_empty_title_share": 1.0
+ },
+ "E2_over_E1_weekday_events_by_type": {
+  "IssueCommentEvent": -0.725,
+  "IssuesEvent": -0.235,
+  "PullRequestEvent": -0.573,
+  "PullRequestReviewCommentEvent": -0.554,
+  "PullRequestReviewEvent": -0.706,
+  "PushEvent": -0.018
+ },
+ "monthly_events_by_type": {
+  "2023-01": {
+   "IssueCommentEvent": 1804803,
+   "IssuesEvent": 1182125,
+   "PullRequestEvent": 3076198,
+   "PullRequestReviewCommentEvent": 888606,
+   "PullRequestReviewEvent": 1441736,
+   "PushEvent": 25564152
+  },
+  "2023-02": {
+   "IssueCommentEvent": 3259578,
+   "IssuesEvent": 2157447,
+   "PullRequestEvent": 5585182,
+   "PullRequestReviewCommentEvent": 1627969,
+   "PullRequestReviewEvent": 2651205,
+   "PushEvent": 46214999
+  },
+  "2023-03": {
+   "IssueCommentEvent": 3493076,
+   "IssuesEvent": 2265124,
+   "PullRequestEvent": 6108556,
+   "PullRequestReviewCommentEvent": 1784834,
+   "PullRequestReviewEvent": 2901542,
+   "PushEvent": 51076503
+  },
+  "2023-04": {
+   "IssueCommentEvent": 3140513,
+   "IssuesEvent": 2335063,
+   "PullRequestEvent": 5587035,
+   "PullRequestReviewCommentEvent": 1511273,
+   "PullRequestReviewEvent": 2489820,
+   "PushEvent": 47809849
+  },
+  "2023-05": {
+   "IssueCommentEvent": 3167047,
+   "IssuesEvent": 2172365,
+   "PullRequestEvent": 5788243,
+   "PullRequestReviewCommentEvent": 1546756,
+   "PullRequestReviewEvent": 2592321,
+   "PushEvent": 46908417
+  },
+  "2023-06": {
+   "IssueCommentEvent": 3052494,
+   "IssuesEvent": 2011029,
+   "PullRequestEvent": 5655752,
+   "PullRequestReviewCommentEvent": 1545398,
+   "PullRequestReviewEvent": 2566584,
+   "PushEvent": 45723319
+  },
+  "2023-07": {
+   "IssueCommentEvent": 3100611,
+   "IssuesEvent": 2167175,
+   "PullRequestEvent": 5578334,
+   "PullRequestReviewCommentEvent": 1543285,
+   "PullRequestReviewEvent": 2541545,
+   "PushEvent": 47908124
+  },
+  "2023-08": {
+   "IssueCommentEvent": 3240425,
+   "IssuesEvent": 2148122,
+   "PullRequestEvent": 5669169,
+   "PullRequestReviewCommentEvent": 1630751,
+   "PullRequestReviewEvent": 2697022,
+   "PushEvent": 50000850
+  },
+  "2023-09": {
+   "IssueCommentEvent": 3171071,
+   "IssuesEvent": 2120925,
+   "PullRequestEvent": 5781037,
+   "PullRequestReviewCommentEvent": 1562449,
+   "PullRequestReviewEvent": 2621439,
+   "PushEvent": 49560125
+  },
+  "2023-10": {
+   "IssueCommentEvent": 3516402,
+   "IssuesEvent": 2268863,
+   "PullRequestEvent": 6627970,
+   "PullRequestReviewCommentEvent": 1670433,
+   "PullRequestReviewEvent": 2838718,
+   "PushEvent": 52005564
+  },
+  "2023-11": {
+   "IssueCommentEvent": 3245154,
+   "IssuesEvent": 2205819,
+   "PullRequestEvent": 6392448,
+   "PullRequestReviewCommentEvent": 1643150,
+   "PullRequestReviewEvent": 2745510,
+   "PushEvent": 62734933
+  },
+  "2023-12": {
+   "IssueCommentEvent": 2764093,
+   "IssuesEvent": 2241784,
+   "PullRequestEvent": 5408917,
+   "PullRequestReviewCommentEvent": 1215267,
+   "PullRequestReviewEvent": 2102364,
+   "PushEvent": 86164056
+  },
+  "2024-01": {
+   "IssueCommentEvent": 3397736,
+   "IssuesEvent": 2172338,
+   "PullRequestEvent": 5999098,
+   "PullRequestReviewCommentEvent": 1563221,
+   "PullRequestReviewEvent": 2660235,
+   "PushEvent": 78271520
+  },
+  "2024-02": {
+   "IssueCommentEvent": 3191277,
+   "IssuesEvent": 2048602,
+   "PullRequestEvent": 6001761,
+   "PullRequestReviewCommentEvent": 1584978,
+   "PullRequestReviewEvent": 2677777,
+   "PushEvent": 96195794
+  },
+  "2024-03": {
+   "IssueCommentEvent": 3419831,
+   "IssuesEvent": 2352622,
+   "PullRequestEvent": 6544682,
+   "PullRequestReviewCommentEvent": 1679607,
+   "PullRequestReviewEvent": 2843883,
+   "PushEvent": 77683901
+  },
+  "2024-04": {
+   "IssueCommentEvent": 3322689,
+   "IssuesEvent": 2132119,
+   "PullRequestEvent": 6498553,
+   "PullRequestReviewCommentEvent": 1612333,
+   "PullRequestReviewEvent": 2783573,
+   "PushEvent": 74661426
+  },
+  "2024-05": {
+   "IssueCommentEvent": 3340704,
+   "IssuesEvent": 2219942,
+   "PullRequestEvent": 6630358,
+   "PullRequestReviewCommentEvent": 1630688,
+   "PullRequestReviewEvent": 2793376,
+   "PushEvent": 62932487
+  },
+  "2024-06": {
+   "IssueCommentEvent": 252735,
+   "IssuesEvent": 187384,
+   "PullRequestEvent": 534123,
+   "PullRequestReviewCommentEvent": 101150,
+   "PullRequestReviewEvent": 178703,
+   "PushEvent": 5147289
+  },
+  "2025-10": {
+   "IssueCommentEvent": 760712,
+   "IssuesEvent": 1168429,
+   "PullRequestEvent": 1643738,
+   "PullRequestReviewCommentEvent": 543006,
+   "PullRequestReviewEvent": 688949,
+   "PushEvent": 27282097
+  },
+  "2025-11": {
+   "IssueCommentEvent": 1395435,
+   "IssuesEvent": 2063649,
+   "PullRequestEvent": 2920775,
+   "PullRequestReviewCommentEvent": 1071036,
+   "PullRequestReviewEvent": 1246161,
+   "PushEvent": 53490902
+  },
+  "2025-12": {
+   "IssueCommentEvent": 1391272,
+   "IssuesEvent": 2122770,
+   "PullRequestEvent": 4256307,
+   "PullRequestReviewCommentEvent": 1186334,
+   "PullRequestReviewEvent": 1251158,
+   "PushEvent": 55542423
+  },
+  "2026-01": {
+   "IssueCommentEvent": 1479425,
+   "IssuesEvent": 2204277,
+   "PullRequestEvent": 4271973,
+   "PullRequestReviewCommentEvent": 1203956,
+   "PullRequestReviewEvent": 1283669,
+   "PushEvent": 55721837
+  },
+  "2026-02": {
+   "IssueCommentEvent": 1275569,
+   "IssuesEvent": 2126371,
+   "PullRequestEvent": 4222871,
+   "PullRequestReviewCommentEvent": 1113313,
+   "PullRequestReviewEvent": 1082573,
+   "PushEvent": 51066480
+  },
+  "2026-03": {
+   "IssueCommentEvent": 987130,
+   "IssuesEvent": 3337372,
+   "PullRequestEvent": 3298783,
+   "PullRequestReviewCommentEvent": 857271,
+   "PullRequestReviewEvent": 789735,
+   "PushEvent": 66186848
+  },
+  "2026-04": {
+   "IssueCommentEvent": 837790,
+   "IssuesEvent": 3019144,
+   "PullRequestEvent": 2867204,
+   "PullRequestReviewCommentEvent": 765932,
+   "PullRequestReviewEvent": 691719,
+   "PushEvent": 65299618
+  },
+  "2026-05": {
+   "IssueCommentEvent": 570698,
+   "IssuesEvent": 1032117,
+   "PullRequestEvent": 1945976,
+   "PullRequestReviewCommentEvent": 362768,
+   "PullRequestReviewEvent": 392355,
+   "PushEvent": 72503757
+  },
+  "2026-06": {
+   "IssueCommentEvent": 174680,
+   "IssuesEvent": 336590,
+   "PullRequestEvent": 668639,
+   "PullRequestReviewCommentEvent": 72172,
+   "PullRequestReviewEvent": 126987,
+   "PushEvent": 79896197
+  },
+  "2026-07": {
+   "IssueCommentEvent": 3895,
+   "IssuesEvent": 5689,
+   "PullRequestEvent": 12744,
+   "PullRequestReviewCommentEvent": 2308,
+   "PullRequestReviewEvent": 3158,
+   "PushEvent": 2721470
+  }
+ },
+ "monthly_pr_opened_empty_title_share": {
+  "2023-01": 0.0,
+  "2023-02": 0.0,
+  "2023-03": 0.0,
+  "2023-04": 0.0,
+  "2023-05": 0.0,
+  "2023-06": 0.0,
+  "2023-07": 0.0,
+  "2023-08": 0.0,
+  "2023-09": 0.0,
+  "2023-10": 0.0,
+  "2023-11": 0.0,
+  "2023-12": 0.0,
+  "2024-01": 0.0,
+  "2024-02": 0.0,
+  "2024-03": 0.0,
+  "2024-04": 0.0,
+  "2024-05": 0.0,
+  "2024-06": 0.0,
+  "2025-10": 1.0,
+  "2025-11": 1.0,
+  "2025-12": 1.0,
+  "2026-01": 1.0,
+  "2026-02": 1.0,
+  "2026-03": 1.0,
+  "2026-04": 1.0,
+  "2026-05": 1.0,
+  "2026-06": 1.0,
+  "2026-07": 1.0
+ }
+}
