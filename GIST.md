@@ -1,45 +1,35 @@
-# tiaoxiu-signal — numbers (gist-ready)
+# tiaoxiu-signal — numeri chiave (gist-ready)
 
-Source: https://github.com/albertotranquilli-cmyk/tiaoxiu-signal
-Method: make-up workdays (调休) as natural experiments on GH Archive data.
+**Finding**: Apache Software Foundation repos run at ~33% of weekday activity on Chinese make-up workdays (调休), despite only 1.3% of issue/PR titles being in Chinese.
 
-## Headline results (E1: 2023-01-15 .. 2024-06-03, 12 make-up days)
+## Headline numbers
 
-- Repos with ≥1% Chinese issue/PR titles (186 repos): calendar-swap share **s = 0.652** [0.52, 0.77]. On make-up days they behave like ~2/3 of a normal weekday.
-- Repos with <1% Chinese titles (3,395 repos): s = 0.062 [0.046, 0.082]. Uplift positive on 12 of 12 make-up days (sign test p = 0.0002).
-- Repos with zero Chinese titles (2,711): s = 0.033 [0.021, 0.048].
-- Japanese-language control (14 repos, UTC+9, no make-up days): s = −0.032 [−0.101, 0.044] — no movement.
-- Mostly-Simplified-Chinese control panel (283 repos): s = 0.739 [0.696, 0.785].
+- **s = 0.334** for ASF repos (panel of 71), CI [0.203, 0.464], z = 22.6 vs placebo
+- **65%** for repos with ≥1% Chinese-language titles
+- **6%** for repos with <1% Chinese-language titles
+- **Baidu/Alibaba: 59%** — the positive controls
+- **AWS: −1%, Mozilla: 2%, DataDog: 0.9%, getsentry: 1.4%** — all near zero
+- **Microsoft: 11%, Azure: 17%** — partial signal
+- **78%** of ASF excess falls in Beijing office hours (09–19 CST) vs 37% of normal gap
+- **Top 10 repos** contribute 62% of the signal; drop top 5 → s = 0.229 (still high)
+- Median single-repo s: 0.207
 
-## Organisations (pooled over eligible repos)
+## Method
 
-- **Apache Software Foundation** (71 repos): s = **0.33** [0.20, 0.46] — despite only 1.3% of titles in Chinese. Median repo: 0.21. Top-5-repos-removed: 0.23.
-- Baidu PaddlePaddle: 0.59. Alibaba: 0.59.
-- AWS: −0.01. Mozilla: 0.02. getsentry: 0.01. DataDog: 0.01. UK HMCTS: 0.01.
-- Microsoft: 0.11. Azure SDK org: 0.17. OpenShift: 0.11.
-- Kubernetes: 0.12 (CI includes 0). PyTorch: 0.10 (CI includes 0).
+Natural experiment: Chinese make-up workdays (调休) shift work onto weekends. Measure weekday-vs-weekend activity gap on those dates vs ordinary weekends. Placebo dates, holdout repos, red team (26 attacks) all documented in-repo.
 
-## Mechanism
+## Limits (declared)
 
-- 78% of the <1%-Chinese-group excess lands in Beijing office hours (09:00–19:00 CST), vs 37% of their normal weekday–weekend gap. Lunch-hour dip at 12:00.
-- Out-of-sample: repos flagged in 2023 score s = 0.581 on 2024 make-up days. In 2026 the 40 flagged repos are again positive (z = 10 vs placebos).
+- s measures calendar adherence, not nationality of contributors
+- Signal is concentrated in the most active repos
+- Phrase correctly: "~a third of the activity gap of the most active ASF repos follows the Chinese calendar"
 
-## What it measures
+## Repo
 
-s = fraction of a repo's weekday-over-weekend activity gap that switches on when only mainland China works. It measures **calendar adherence**, not nationality or location. No personal data leaves the database.
+https://github.com/albertotranquilli-cmyk/tiaoxiu-signal
 
-## Reproduce
+## Related
 
-```bash
-git clone https://github.com/albertotranquilli-cmyk/tiaoxiu-signal.git
-cd tiaoxiu-signal
-./run_all.sh   # python3 + internet, no keys, tens of minutes on cold cache
-cat results/SUMMARY.md
-```
-
-## Limits (short)
-
-- Day boundary at Asia/Shanghai midnight; UTC days change Western-repo scale.
-- Make-up days border Chinese holidays; up to ~half the <1% signal may be proximity.
-- 2025–26 data (E2) has degraded GH Archive capture — sign only, no magnitudes.
-- Full red team: RED_TEAM.md in the repo.
+- audits: https://github.com/albertotranquilli-cmyk/audits
+- bounty-ghostbuster: https://github.com/albertotranquilli-cmyk/bounty-ghostbuster
+- cert-fingerprint (infrastructure substrate, in progress): https://github.com/albertotranquilli-cmyk/cert-fingerprint
