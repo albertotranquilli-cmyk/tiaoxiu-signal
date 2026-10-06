@@ -1,0 +1,32 @@
+{
+  "id": "tiaoxiu-signal",
+  "schema": 1,
+  "status": "reproducible_research",
+  "purpose": "Reproduce and adversarially test the make-up-workday natural experiment",
+  "entrypoints": {
+    "reproduce": "bash run_all.sh"
+  },
+  "machine_outputs": [
+    "results/results.json",
+    "results/robustness.json",
+    "results/extra_checks.json",
+    "results/mechanism.json",
+    "results/capture.json"
+  ],
+  "network": {
+    "reproduce": true
+  },
+  "agent_contract": {
+    "safe_autonomous": [
+      "reproduce",
+      "verify_outputs",
+      "red_team"
+    ],
+    "human_gate": [
+      "external_publication"
+    ],
+    "forbidden": [
+      "infer_nationality_from_aggregate_signal"
+    ]
+  }
+}
