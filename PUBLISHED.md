@@ -1,3 +1,4 @@
-failed: no organic X post connector (only X Ads nullcast; not used)
-date: 2026-10-05
+failed: no organic X connector
+date: 2026-10-07
 platform: X
+note: only X Ads nullcast available; not used
